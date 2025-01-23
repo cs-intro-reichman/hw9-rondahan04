@@ -20,4 +20,10 @@ public class ListIterator {
         current = current.next;
         return currentNode.block;
     }
+    /** Returns the current Node in the list, and advances the cursor */
+    public Node nextNode() {
+        Node currentNode=current;
+        current=current.next;
+        return currentNode;
+    }
 }

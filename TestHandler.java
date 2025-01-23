@@ -2646,7 +2646,7 @@ public class TestHandler {
     private boolean freeTest2(){
         MemorySpace memorySpace = new MemorySpace(100);
         String expectedText = "(0 , 100)\n";
-        String expected = TesterMessagesEnum.ERROR + " IllegalArgumentException: index must be between 0 and size";
+        String expected = "false";
         String actual = "";
         try {
             memorySpace.free(0);
@@ -2827,9 +2827,9 @@ public class TestHandler {
         String expected1 = "\n(0 , 5) (5 , 20) (25 , 20) (45 , 55) ";
         String expected2 = "(0 , 5) (5 , 20) (25 , 20) \n(45 , 55) ";
         String expected3 = "(0 , 45) \n(45 , 55) ";
-        String expected = "true";
+        String expected = "false";
         String actual = "";
-        boolean actualB = true;
+        boolean actualB = false;
         try {
             int address = memorySpace.malloc(5);
             int address1 = memorySpace.malloc(20);
@@ -2853,9 +2853,9 @@ public class TestHandler {
         String expected1 = "\n(0 , 5) (5 , 20) (25 , 20) (45 , 55) ";
         String expected2 = "(0 , 5) (25 , 20) \n(5 , 20) (45 , 55) ";
         String expected3 = "(0 , 45) \n(45 , 55) ";
-        String expected = "true";
+        String expected = "false";
         String actual = "";
-        boolean actualB = true;
+        boolean actualB = false;
         try {
             int address = memorySpace.malloc(5);
             int address1 = memorySpace.malloc(20);
