@@ -116,22 +116,22 @@ public class MemorySpace {
 	 * In this implementation Malloc does not call defrag.
 	 */
 	public void defrag() {
-		ListIterator firstIter = freeList.iterator();
-		ListIterator secondIter = freeList.iterator();
-		while(firstIter.hasNext()){ // first loop, runs to check at the ends of each block address
-			secondIter.next();
-			int concatAddress = firstIter.current.block.baseAddress + firstIter.current.block.length; // end of empty block index
-			while(secondIter.hasNext()){ // second loop, runs to check if any of the blocks start at end of the firstIter address
-				if(secondIter.current.block.baseAddress == concatAddress){
-					firstIter.current.block.length = firstIter.current.block.length + secondIter.current.block.length;
-					freeList.remove(secondIter.current.block);
-					firstIter = freeList.iterator(); // defaults the first iter run, so that any double/triple/etc concatenations will be made if possible
+		ListIterator f1Iterator = freeList.iterator();
+		ListIterator f2Iterator = freeList.iterator();
+		while(f1Iterator.hasNext()){ 
+			f2Iterator.next();
+			int f1BaseAddress = f1Iterator.current.block.baseAddress + f1Iterator.current.block.length; 
+			while(f2Iterator.hasNext()){ 
+				if(f2Iterator.current.block.baseAddress == f1BaseAddress){
+					f1Iterator.current.block.length = f1Iterator.current.block.length + f2Iterator.current.block.length;
+					freeList.remove(f2Iterator.current.block);
+					f1Iterator = freeList.iterator();
 					break;
 				}
-				else secondIter.next();
+				else f2Iterator.next();
 			}
-			secondIter = freeList.iterator(); // rewinds secondIter so to check the whole list (list is not ordered)
-			firstIter.next();
+			f2Iterator = freeList.iterator(); 
+			f1Iterator.next();
 	}
 }
 }
